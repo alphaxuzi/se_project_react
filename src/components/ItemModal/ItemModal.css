@@ -1,0 +1,30 @@
+.modal__container.modal__container_type_image {
+    width: 498px;
+    padding: 0;
+    height: 610px;
+}
+
+.modal__image{
+    width: 498px;
+    height: 498px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+.modal__footer {
+    width: inherit;
+    background-color: white;
+    height: 112px;
+    border-radius: 30px;
+    padding-top: 20px;
+}
+
+.modal__caption {
+    margin-top: 0;
+    margin-left: 32px;
+}
+
+.modal__weather {
+    margin-bottom: 0;
+    margin-left: 32px;
+}
