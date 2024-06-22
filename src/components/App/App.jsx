@@ -14,16 +14,18 @@ function App() {
   const [weatherData, setWeatherData] = useState({
     type: "hot",
     temp: { F: 999, C: 999 },
-    city: ""
+    city: "",
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleAddClick = () => {
-    setActiveModal("add-garment");
+    setIsOpen(true);
   };
 
   const onClose = () => {
+    setIsOpen(false);
     setActiveModal("");
   };
 
@@ -44,75 +46,76 @@ function App() {
   }, []);
 
   return (
-    <>
-      <div className="page">
-        <div className="page__content">
-          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-          <Main weatherData={weatherData} handleImageClick={handleImageClick} />
-          <Footer />
-          <ModalWithForm
-            buttonText={"Add garment"}
-            title={"New Garment"}
-            activeModal={activeModal}
-            onClose={onClose}
-          >
-            <label htmlFor="name" className="modal__label">
-              <p className="modal__input_header">Name</p>
+    <div className="page">
+      <div className="page__content">
+        <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+        <Main weatherData={weatherData} handleImageClick={handleImageClick} />
+        <Footer />
+        <ModalWithForm
+          buttonText={"Add garment"}
+          title={"New Garment"}
+          isOpen={isOpen}
+          onClose={onClose}
+        >
+          <label htmlFor="name" className="modal__label">
+            <p className="modal__input_header">Name</p>
+            <input
+              placeholder="Name"
+              type="text"
+              className="modal__input"
+              id="name"
+            />
+          </label>
+          <label htmlFor="imageURL" className="modal__label">
+            <p className="modal__input_header">Image</p>
+            <input
+              placeholder="Image URL"
+              type="url"
+              className="modal__input"
+              id="imageURL"
+            />
+          </label>
+          <p className="modal__input_header">Select the weather type: </p>
+          <fieldset className="modal__radio-inputs">
+            <div className="modal__input_wrapper">
               <input
-                placeholder="Name"
-                type="text"
-                className="modal__input"
-                id="name"
-              />
-            </label>
-            <label htmlFor="imageURL" className="modal__label">
-              <p className="modal__input_header">Image</p>
+                type="radio"
+                className="modal__radio-input"
+                name="group1"
+                id="Hot"
+                value="Hot"
+              />{" "}
+              <label htmlFor="Hot"> Hot</label>
+            </div>
+            <div className="modal__input_wrapper">
               <input
-                placeholder="Image URL"
-                type="url"
-                className="modal__input"
-                id="imageURL"
+                type="radio"
+                className="modal__radio-input"
+                id="Warm"
+                value="Warm"
+                name="group1"
               />
-            </label>
-            <p className="modal__input_header">Select the weather type: </p>
-            <fieldset className="modal__radio-inputs">
-              <div className="modal__input_wrapper">
-                <input
-                  type="radio"
-                  className="modal__radio-input"
-                  id="Hot"
-                  value="Hot"
-                />{" "}
-                <label htmlFor="Hot"> Hot</label>
-              </div>
-              <div className="modal__input_wrapper">
-                <input
-                  type="radio"
-                  className="modal__radio-input"
-                  id="Warm"
-                  value="Warm"
-                />
-                <label htmlFor="Warm"> Warm</label>
-              </div>
-              <div className="modal__input_wrapper">
-                <input
-                  type="radio"
-                  className="modal__radio-input"
-                  id="Cold"
-                  value="Cold"
-                />
-                <label htmlFor="Cold"> Cold</label>
-              </div>
-            </fieldset>
-          </ModalWithForm>
-          <ItemModal
-            activeModal={activeModal}
-            card={selectedCard}
-            onClose={onClose}
-          />
-        </div>
+              <label htmlFor="Warm"> Warm</label>
+            </div>
+            <div className="modal__input_wrapper">
+              <input
+                type="radio"
+                className="modal__radio-input"
+                id="Cold"
+                value="Cold"
+                name="group1"
+              />
+              <label htmlFor="Cold"> Cold</label>
+            </div>
+          </fieldset>
+        </ModalWithForm>
+        <ItemModal
+          activeModal={activeModal}
+          card={selectedCard}
+          onClose={onClose}
+        />
       </div>
-    </>
+    </div>
   );
 }
 
