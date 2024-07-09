@@ -1,0 +1,31 @@
+.c-section__container{
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+    margin-top: 47px;
+    max-width: 1015px;
+}
+
+.c-section__top-part{
+    display: flex;
+}
+
+.c-section__header{
+    font-size: 20px;
+}
+
+.c-section__button{
+    border: none;
+    margin-left: 20px;
+    color: rgba(0, 0, 0, 0.6);
+    background-color: #f3f3f3;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.c-section__cards{
+    display: flex;
+    margin-top: 0;
+    padding: 0;
+    gap: 20px;
+}

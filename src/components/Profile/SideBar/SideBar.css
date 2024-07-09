@@ -1,0 +1,20 @@
+.sidebar__container{
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 47px;
+    margin-right: 115px;
+}
+
+.sidebar__avatar{
+    width: 56px;
+    height: 56px;
+    margin-right: 15px;
+}
+
+.sidebar__name{
+    font-size: 20px;
+    margin:0%;
+    height: 100%;
+}

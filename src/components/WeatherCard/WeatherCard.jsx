@@ -1,9 +1,10 @@
 import "./WeatherCard.css";
-import sunnyCard from "../../assets/day/clear.svg";
+import React, { useContext } from "react";
 import {
   weatherOptions,
   defaultWeatherOptions,
 } from "../../utils/constants.js";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
 
 function WeatherCard({ weatherData }) {
   const weatherOption =
@@ -16,14 +17,15 @@ function WeatherCard({ weatherData }) {
 
   const weatherOptionUrl = weatherOption.url;
 
-  console.log(weatherOptionUrl);
   const weatherOptionCondition = weatherOption.condition;
+
+  const {currentTemperatureUnit} = useContext(CurrentTemperatureUnitContext)
 
   return (
     <section className="weather-card">
-      <p className="weather-card__temp">{weatherData.temp.F}&deg;F</p>
+      <p className="weather-card__temp">{currentTemperatureUnit === 'F' ? `${weatherData.temp.F}°F` : `${weatherData.temp.C}°C`}</p>
       <img
-        src={weatherOptionUrl}
+        src={weatherOptionUrl }
         alt={`Card showing ${weatherOptionCondition} weather`}
         className="weather-card__image"
       />

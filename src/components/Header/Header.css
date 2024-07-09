@@ -12,7 +12,6 @@
     margin-right: 24px;
 }
 
-.header__date-and-location{}
 
 .header__button{
     border: none;
@@ -24,6 +23,7 @@
      display: flex; 
      align-items: center;
      gap: 12px;
+     margin-left: auto;
 }
 
 .header__username{
