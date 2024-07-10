@@ -69,14 +69,26 @@ function App() {
   };
 
   useEffect(() => {
-    getWeather(coordinates, APIkey)
-      .then((data) => {
-        const filteredData = filterWeatherData(data);
-        setWeatherData(filteredData);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          getWeather(latitude, longitude, APIkey)
+            .then((data) => {
+              const filteredData = filterWeatherData(data);
+              setWeatherData(filteredData);
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+        },
+        (error) => {
+          console.error("Error fetching geolocation:", error);
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
   }, []);
 
   useEffect(() => {
