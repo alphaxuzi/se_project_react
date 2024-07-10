@@ -9,23 +9,29 @@ import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import { coordinates, APIkey, defaultClothingItems } from "../../utils/constants";
+import {
+  coordinates,
+  APIkey,
+  defaultClothingItems,
+} from "../../utils/constants";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-import { Route, Routes} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import { getItems, addCard, deleteCard } from "../../utils/api";
+
 
 function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [weatherData, setWeatherData] = useState({
     type: "",
-    temp: { F: "" , C: "" },
+    temp: { F: "", C: "" },
     city: "",
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [isOpen, setIsOpen] = useState(false);
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
 
   const handleAddClick = () => {
     setActiveModal("New Garment");
@@ -37,7 +43,6 @@ function App() {
 
   const onAddItem = (item) => {
     item._id = Date.now().toString();
-    console.log(item);
     setClothingItems([item, ...clothingItems]);
     onClose();
   };
@@ -51,6 +56,18 @@ function App() {
     setCurrentTemperatureUnit((prevUnit) => (prevUnit === "C" ? "F" : "C"));
   };
 
+  const handleDeleteCard = (cardId) => {
+    deleteCard(cardId)
+      .then(() => {
+        setClothingItems((prevItems) => prevItems.filter(item => item._id !== cardId));
+        onClose();  
+      })
+      .catch((err) => {
+        console.error("Error deleting item:", err);
+      
+      });
+  };
+
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
@@ -61,6 +78,26 @@ function App() {
         console.error(err);
       });
   }, []);
+
+  useEffect(() => {
+    getItems().then((data) => {
+      setClothingItems(data);
+    }).catch((err) => {console.error(err)})
+  }, []);  
+
+  const handleAddNewItem = (name, imageUrl, weather) => {
+    addCard(name, imageUrl, weather)
+      .then((data) => {
+        onAddItem(data); 
+      })
+      .catch((err) => {
+        console.error("Error adding item:", err);
+      });
+  };
+
+  const handleModalSubmit = ( name, imageUrl, weather) => {
+    handleAddNewItem(name, imageUrl, weather);
+  };
 
   return (
     <div className="page">
@@ -87,6 +124,7 @@ function App() {
                   weatherData={weatherData}
                   handleAddClick={handleAddClick}
                   handleImageClick={handleImageClick}
+                  clothingItems={clothingItems}
                 />
               }
             ></Route>
@@ -98,13 +136,14 @@ function App() {
           <AddItemModal
             isOpen={activeModal === "New Garment"}
             onClose={onClose}
-            onAddItem={onAddItem}
+            onAddItem={handleAddNewItem}
           />
         )}
         <ItemModal
           activeModal={activeModal}
           card={selectedCard}
           onClose={onClose}
+          handleDeleteCard={handleDeleteCard}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>

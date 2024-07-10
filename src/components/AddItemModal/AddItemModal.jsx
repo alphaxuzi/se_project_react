@@ -9,7 +9,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
     setName(e.target.value);
   };
 
-  const [link, setUrl] = useState("");
+  const [imageUrl, setUrl] = useState("");
   const handleUrlChange = (e) => {
     setUrl(e.target.value);
   };
@@ -21,7 +21,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem({ name, link, weather });
+    onAddItem( name, imageUrl, weather );
   };
 
   return (
@@ -51,7 +51,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
             type="url"
             className="modal__input"
             id="imageURL"
-            value={link}
+            value={imageUrl}
             onChange={handleUrlChange}
           />
         </label>
@@ -63,11 +63,11 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
               className="modal__radio-input"
               name="group1"
               id="Hot"
-              value="Hot"
-              checked={weather === "Hot"}
+              value="hot"
+              checked={weather === "hot"}
               onChange={handleWeatherType}
             />{" "}
-            <label htmlFor="Hot"> Hot</label>
+            <label htmlFor="hot"> Hot</label>
           </div>
           <div className="modal__input_wrapper">
             <input
@@ -75,11 +75,11 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
               className="modal__radio-input"
               id="Warm"
               name="group1"
-              value="Warm"
-              checked={weather === "Warm"}
+              value="warm"
+              checked={weather === "warm"}
               onChange={handleWeatherType}
             />
-            <label htmlFor="Warm"> Warm</label>
+            <label htmlFor="warm"> Warm</label>
           </div>
           <div className="modal__input_wrapper">
             <input
@@ -87,11 +87,11 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
               className="modal__radio-input"
               id="Cold"
               name="group1"
-              value="Cold"
-              checked={weather === "Cold"}
+              value="cold"
+              checked={weather === "cold"}
               onChange={handleWeatherType}
             />
-            <label htmlFor="Cold"> Cold</label>
+            <label htmlFor="cold"> Cold</label>
           </div>
         </fieldset>
       </ModalWithForm>

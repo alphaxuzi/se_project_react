@@ -17,6 +17,7 @@
     height: 112px;
     border-radius: 30px;
     padding-top: 20px;
+    position: relative;
 }
 
 .modal__caption {
@@ -27,4 +28,14 @@
 .modal__weather {
     margin-bottom: 0;
     margin-left: 32px;
+}
+
+.modal__delete-button {
+    border: none;
+    position: absolute;
+    color: red;
+    top: 20px;
+    right: 35px;
+    background-color: inherit;
+    cursor: pointer;
 }
