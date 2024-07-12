@@ -7,21 +7,19 @@ function Profile({
   handleImageClick,
   handleAddClick,
   clothingItems,
-  handleDeleteCard
+  handleDeleteCard,
 }) {
   return (
-    <>
-      <div className="profile__container">
-        <SideBar />
-        <ClothesSection
-          weatherData={weatherData}
-          handleImageClick={handleImageClick}
-          handleAddClick={handleAddClick}
-          clothingItems={clothingItems}
-          handleDeleteCard={handleDeleteCard}
-        />
-      </div>
-    </>
+    <div className="profile__container">
+      <SideBar />
+      <ClothesSection
+        weatherData={weatherData}
+        handleImageClick={handleImageClick}
+        handleAddClick={handleAddClick}
+        clothingItems={clothingItems}
+        handleDeleteCard={handleDeleteCard}
+      />
+    </div>
   );
 }
 

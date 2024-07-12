@@ -20,7 +20,6 @@ import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { getItems, addCard, deleteCard } from "../../utils/api";
 
-
 function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [weatherData, setWeatherData] = useState({
@@ -59,12 +58,13 @@ function App() {
   const handleDeleteCard = (cardId) => {
     deleteCard(cardId)
       .then(() => {
-        setClothingItems((prevItems) => prevItems.filter(item => item._id !== cardId));
-        onClose();  
+        setClothingItems((prevItems) =>
+          prevItems.filter((item) => item._id !== cardId)
+        );
+        onClose();
       })
       .catch((err) => {
         console.error("Error deleting item:", err);
-      
       });
   };
 
@@ -92,23 +92,23 @@ function App() {
   }, []);
 
   useEffect(() => {
-    getItems().then((data) => {
-      setClothingItems(data);
-    }).catch((err) => {console.error(err)})
-  }, []);  
+    getItems()
+      .then((data) => {
+        setClothingItems(data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   const handleAddNewItem = (name, imageUrl, weather) => {
     addCard(name, imageUrl, weather)
       .then((data) => {
-        onAddItem(data); 
+        onAddItem(data);
       })
       .catch((err) => {
         console.error("Error adding item:", err);
       });
-  };
-
-  const handleModalSubmit = ( name, imageUrl, weather) => {
-    handleAddNewItem(name, imageUrl, weather);
   };
 
   return (
@@ -144,13 +144,13 @@ function App() {
 
           <Footer />
         </div>
-        {activeModal === "New Garment" && (
-          <AddItemModal
-            isOpen={activeModal === "New Garment"}
-            onClose={onClose}
-            onAddItem={handleAddNewItem}
-          />
-        )}
+
+        <AddItemModal
+          isOpen={activeModal === "New Garment"}
+          onClose={onClose}
+          onAddItem={handleAddNewItem}
+        />
+
         <ItemModal
           activeModal={activeModal}
           card={selectedCard}

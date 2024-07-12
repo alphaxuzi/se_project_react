@@ -8,36 +8,34 @@ function ClothesSection({
   handleImageClick,
   handleAddClick,
   clothingItems,
-  handleDeleteCard
+  handleDeleteCard,
 }) {
   return (
-    <>
-      <div className="c-section__container">
-        <div className="c-section__top-part">
-          <p className="c-section__header">Your items</p>
-          <button className="c-section__button" onClick={handleAddClick}>
-            {" "}
-            + Add new
-          </button>
-        </div>
-        <ul className="c-section__cards">
-          {clothingItems
-            .filter((item) => {
-              return item.weather === weatherData.type;
-            })
-            .map((item) => {
-              return (
-                <ItemCard
-                  key={item._id}
-                  item={item}
-                  onCardClick={handleImageClick}
-                  onDelete={handleDeleteCard}
-                />
-              );
-            })}
-        </ul>
+    <div className="c-section__container">
+      <div className="c-section__top-part">
+        <p className="c-section__header">Your items</p>
+        <button className="c-section__button" onClick={handleAddClick}>
+          {" "}
+          + Add new
+        </button>
       </div>
-    </>
+      <ul className="c-section__cards">
+        {clothingItems
+          .filter((item) => {
+            return item.weather === weatherData.type;
+          })
+          .map((item) => {
+            return (
+              <ItemCard
+                key={item._id}
+                item={item}
+                onCardClick={handleImageClick}
+                onDelete={handleDeleteCard}
+              />
+            );
+          })}
+      </ul>
+    </div>
   );
 }
 
