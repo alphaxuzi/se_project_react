@@ -22,7 +22,7 @@ function ClothesSection({
       <ul className="c-section__cards">
         {clothingItems
           .filter((item) => {
-            return item.weather === weatherData.type;
+            return item.weather && weatherData.type;
           })
           .map((item) => {
             return (

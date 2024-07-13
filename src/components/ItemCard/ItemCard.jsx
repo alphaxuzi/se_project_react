@@ -1,10 +1,9 @@
 import "./ItemCard.css";
 
-function ItemCard({ item, onCardClick,  }) {
+function ItemCard( {item, onCardClick}) {
   const handleCardClick = () => {
     onCardClick(item);
   };
-
 
   return (
     <div className="card">

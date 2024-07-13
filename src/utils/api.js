@@ -5,7 +5,12 @@ function checkResponse (res) {
 }
 
 function getItems() {
-  return fetch(`${baseUrl}/items`).then(checkResponse);
+  return fetch(`${baseUrl}/items`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    }
+  }).then(checkResponse);
 }
 
 function addCard(name, imageUrl, weather) {
