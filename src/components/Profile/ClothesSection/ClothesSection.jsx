@@ -2,6 +2,8 @@ import "./ClothesSection.css";
 import ItemCard from "../../ItemCard/ItemCard";
 import { defaultClothingItems } from "../../../utils/constants";
 import AddItemModal from "../../AddItemModal/AddItemModal";
+import { useContext } from "react";
+import CurrentUserContext from "../../../contexts/CurrentUserContext";
 
 function ClothesSection({
   weatherData,
@@ -9,7 +11,15 @@ function ClothesSection({
   handleAddClick,
   clothingItems,
   handleDeleteCard,
+  onCardLike
 }) {
+  const currentUser = useContext(CurrentUserContext);
+
+  const userClothingItems = currentUser
+  ? clothingItems.filter((item) => item.owner === currentUser._id)
+  : [];
+
+
   return (
     <div className="c-section__container">
       <div className="c-section__top-part">
@@ -20,7 +30,7 @@ function ClothesSection({
         </button>
       </div>
       <ul className="c-section__cards">
-        {clothingItems
+        {userClothingItems
           .filter((item) => {
             return item.weather && weatherData.type;
           })
@@ -31,6 +41,7 @@ function ClothesSection({
                 item={item}
                 onCardClick={handleImageClick}
                 onDelete={handleDeleteCard}
+                onCardLike={onCardLike}
               />
             );
           })}

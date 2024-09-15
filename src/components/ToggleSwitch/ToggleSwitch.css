@@ -1,6 +1,8 @@
 .switch {
   display: flex;
   position: relative;
+  margin-left: auto;
+  margin-right: 20px;
 }
 
 .switch__box {
@@ -14,7 +16,7 @@
   /* outline: none; */
 }
 
-.switch__slider{
+.switch__slider {
   border-radius: 20px;
   width: 30px;
   height: 30px;
@@ -23,28 +25,28 @@
   text-align: center;
   cursor: pointer;
   position: absolute;
-  
 }
 
-
-.switch__slider-F{
+.switch__slider-F {
   left: 25px;
 }
 
-.switch__active{
+.switch__active {
   color: white;
 }
 
-.switch__temp-C{
+.switch__temp-C {
   position: absolute;
   top: -9px;
   left: 9px;
   color: white;
+  cursor: pointer;
 }
 
-.switch__temp-F{
+.switch__temp-F {
   position: absolute;
   top: -9px;
   left: 36px;
   color: white;
+  cursor: pointer;
 }

@@ -3,8 +3,17 @@ import logo from "../../assets/WTWR-Logo.svg";
 import avatar from "../../assets/avatar.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function Header({ handleAddClick, weatherData }) {
+function Header({
+  handleAddClick,
+  weatherData,
+  isLoggedIn,
+  handleLogin,
+  handleRegister,
+}) {
+  const currentUser = useContext(CurrentUserContext);
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -19,23 +28,42 @@ function Header({ handleAddClick, weatherData }) {
         {currentDate}, {weatherData.city}
       </p>
 
-      <div className="header__buttons">
-        <ToggleSwitch />
-        <button
-          onClick={handleAddClick}
-          type="button"
-          className="header__button"
-        >
-          + Add Clothes
-        </button>
-        </div>
-        <Link className="header__link" to="/profile">
-        <div className="header__user-container">
-          <p className="header__username">firstname lastname</p>
-
-          <img src={avatar} alt="pfp" className="header__avatar" />
+      {isLoggedIn && currentUser ? (
+        <>
+          <div className="header__buttons">
+            <button
+              onClick={handleAddClick}
+              type="button"
+              className="header__button"
+            >
+              + Add Clothes
+            </button>
           </div>
-        </Link>
+          <Link className="header__link" to="/profile">
+            <div className="header__user-container">
+              <p className="header__username">
+                {currentDate ? currentUser.name : "User"}
+              </p>
+
+              <img
+                src={currentUser.avatar}
+                alt="User Avatar"
+                className="header__avatar"
+              />
+            </div>
+          </Link>
+        </>
+      ) : (
+        <>
+          <ToggleSwitch />
+          <button onClick={handleLogin} className="header__login-button">
+            Log in
+          </button>
+          <button onClick={handleRegister} className="header__signup-button">
+            Sign up
+          </button>
+        </>
+      )}
     </header>
   );
 }
