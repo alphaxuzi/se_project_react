@@ -15,7 +15,7 @@ import {
   defaultClothingItems,
 } from "../../utils/constants";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import {
@@ -41,7 +41,7 @@ function App() {
     city: "",
   });
   const navigate = useNavigate();
-
+  const location = useLocation();
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [isOpen, setIsOpen] = useState(false);
@@ -171,12 +171,12 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
+
     if (token) {
       checkToken(token)
         .then((user) => {
           setIsLoggedIn(true);
           setCurrentUser(user);
-          navigate("/profile");
         })
         .catch((err) => {
           console.error("Token verification failed:", err);
@@ -186,15 +186,13 @@ function App() {
       setIsLoggedIn(false);
       setCurrentUser(false);
     }
-  }, [navigate]);
+  }, [navigate, location.pathname]);
 
   const handleAddNewItem = ({ name, imageUrl, weather }) => {
     addCard({ name, imageUrl, weather, owner: currentUser._id })
       .then((item) => {
-        console.log("New item added:", item);
         setClothingItems((prevItems) => {
-          console.log("Previous items:", prevItems); // Debugging
-          return [item, ...prevItems];
+          return [item.data, ...prevItems];
         });
         onClose();
       })
@@ -209,18 +207,14 @@ function App() {
     const id = card._id;
 
     !isLiked
-      ? // if so, send a request to add the user's id to the card's likes array
-        // the first argument is the card's id
-        addCardLike(id, token)
+      ? addCardLike(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard : item))
             );
           })
           .catch((err) => console.log(err))
-      : // if not, send a request to remove the user's id from the card's likes array
-        // the first argument is the card's id
-        removeCardLike(id, token)
+      : removeCardLike(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard : item))
@@ -276,7 +270,6 @@ function App() {
 
           <AddItemModal
             isOpen={activeModal === "New Garment"}
-            
             onClose={onClose}
             onAddItem={onAddItem}
             handleAddNewItem={handleAddNewItem}

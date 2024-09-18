@@ -5,6 +5,7 @@ import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { useNavigate } from "react-router-dom";
 
 function Header({
   handleAddClick,
@@ -13,6 +14,7 @@ function Header({
   openLogin,
   openRegister,
 }) {
+  
   const currentUser = useContext(CurrentUserContext);
   const currentDate = new Date().toLocaleString("default", {
     month: "long",

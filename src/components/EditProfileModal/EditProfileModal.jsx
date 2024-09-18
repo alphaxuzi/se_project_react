@@ -1,7 +1,10 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function EditProfileModal({isOpen, onClose, updateProfile}) {
+  const currentUser = useContext(CurrentUserContext);
+
     const [formData, setFormData] = useState({
         name: "",
         avatar: "",
@@ -19,6 +22,15 @@ function EditProfileModal({isOpen, onClose, updateProfile}) {
     e.preventDefault();
     updateProfile(formData)
   }
+
+  useEffect(() => {
+    if (currentUser) {
+      setFormData({
+        name: currentUser.name || "",
+        avatar: currentUser.avatar || ""
+      })
+    }
+  }, [currentUser, isOpen])
 
 
   return (
@@ -38,6 +50,7 @@ function EditProfileModal({isOpen, onClose, updateProfile}) {
           id="name-editprof"
           name="name"
           onChange={handleChange}
+          value={formData.name}
         />
       </label>
       <label htmlFor="password" className="modal__label">
@@ -49,6 +62,7 @@ function EditProfileModal({isOpen, onClose, updateProfile}) {
           name="avatar"
           id="avatar"
           onChange={handleChange}
+          value={formData.avatar}
         />
       </label>
     </ModalWithForm>
