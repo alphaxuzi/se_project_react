@@ -186,7 +186,7 @@ function App() {
       setIsLoggedIn(false);
       setCurrentUser(false);
     }
-  }, [navigate, location.pathname]);
+  }, [navigate]);
 
   const handleAddNewItem = ({ name, imageUrl, weather }) => {
     addCard({ name, imageUrl, weather, owner: currentUser._id })
