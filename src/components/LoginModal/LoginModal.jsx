@@ -41,7 +41,7 @@ const LoginModal = ({ isOpen, onClose, onLogin, handleRegister }) => {
           placeholder="Email"
           type="email"
           className="modal__input"
-          id="email"
+          id="email-login"
           name="email"
           value={formData.email}
           onChange={handleChange}
@@ -54,7 +54,7 @@ const LoginModal = ({ isOpen, onClose, onLogin, handleRegister }) => {
           name="password"
           type="password"
           className="modal__input"
-          id="password"
+          id="password-login"
           value={formData.password}
           onChange={handleChange}
         />

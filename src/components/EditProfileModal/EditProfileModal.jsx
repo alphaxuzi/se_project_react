@@ -35,7 +35,7 @@ function EditProfileModal({isOpen, onClose, updateProfile}) {
           placeholder="Name"
           type="name"
           className="modal__input"
-          id="name"
+          id="name-editprof"
           name="name"
           onChange={handleChange}
         />

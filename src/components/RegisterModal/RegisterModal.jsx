@@ -39,7 +39,7 @@ const RegisterModal = ({ isOpen, onClose, onSignup, handleLogin }) => {
             placeholder="Email"
             type="email"
             className="modal__input"
-            id="email"
+            id="email-register"
             name="email"
             onChange={handleChange}
             value={formData.email}
@@ -49,10 +49,10 @@ const RegisterModal = ({ isOpen, onClose, onSignup, handleLogin }) => {
           <p className="modal__input_header">Password</p>
           <input
             placeholder="Password"
-            type="password"
+            type="passwor"
             className="modal__input"
             name="password"
-            id="password"
+            id="password-register"
             onChange={handleChange}
             value={formData.password}
           />
@@ -63,7 +63,7 @@ const RegisterModal = ({ isOpen, onClose, onSignup, handleLogin }) => {
             placeholder="Name"
             type="text"
             className="modal__input"
-            id="name"
+            id="name-register"
             name="name"
             onChange={handleChange}
             value={formData.name}
@@ -75,7 +75,7 @@ const RegisterModal = ({ isOpen, onClose, onSignup, handleLogin }) => {
             placeholder="Image URL"
             type="url"
             className="modal__input"
-            id="imageURL"
+            id="imageURL-register"
             name="avatar"
             onChange={handleChange}
             value={formData.avatar}
