@@ -10,8 +10,8 @@ function Header({
   handleAddClick,
   weatherData,
   isLoggedIn,
-  handleLogin,
-  handleRegister,
+  openLogin,
+  openRegister,
 }) {
   const currentUser = useContext(CurrentUserContext);
   const currentDate = new Date().toLocaleString("default", {
@@ -56,10 +56,10 @@ function Header({
       ) : (
         <>
           <ToggleSwitch />
-          <button onClick={handleLogin} className="header__login-button">
+          <button onClick={openLogin} className="header__login-button">
             Log in
           </button>
-          <button onClick={handleRegister} className="header__signup-button">
+          <button onClick={openRegister} className="header__signup-button">
             Sign up
           </button>
         </>

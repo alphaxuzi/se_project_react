@@ -52,11 +52,11 @@ function App() {
     setActiveModal("New Garment");
   };
 
-  const handleLogin = () => {
+  const openLogin = () => {
     setActiveModal("Log in");
   };
 
-  const handleRegister = () => {
+  const openRegister = () => {
     setActiveModal("Sign up");
   };
 
@@ -69,8 +69,6 @@ function App() {
   };
 
   const onAddItem = (item) => {
-    item._id = Date.now().toString();
-    setClothingItems([item, ...clothingItems]);
     onClose();
   };
 
@@ -97,6 +95,7 @@ function App() {
   };
 
   const handleRegistration = ({ name, avatar, email, password }) => {
+    console.log({ name, avatar, email, password });
     signup({ name, avatar, email, password })
       .then(() => {
         setIsLoggedIn(true);
@@ -192,8 +191,11 @@ function App() {
   const handleAddNewItem = ({ name, imageUrl, weather }) => {
     addCard({ name, imageUrl, weather, owner: currentUser._id })
       .then((item) => {
-        item._id = Date.now().toString();
-        setClothingItems((prevItems) => [item, ...prevItems]);
+        console.log("New item added:", item);
+        setClothingItems((prevItems) => {
+          console.log("Previous items:", prevItems); // Debugging
+          return [item, ...prevItems];
+        });
         onClose();
       })
       .catch((err) => {
@@ -236,8 +238,8 @@ function App() {
           <div className="page__content">
             <Header
               isLoggedIn={isLoggedIn}
-              handleLogin={handleLogin}
-              handleRegister={handleRegister}
+              openLogin={openLogin}
+              openRegister={openRegister}
               handleAddClick={handleAddClick}
               weatherData={weatherData}
             />
@@ -274,6 +276,7 @@ function App() {
 
           <AddItemModal
             isOpen={activeModal === "New Garment"}
+            
             onClose={onClose}
             onAddItem={onAddItem}
             handleAddNewItem={handleAddNewItem}
@@ -290,14 +293,14 @@ function App() {
             isOpen={activeModal === "Sign up"}
             onClose={onClose}
             onSignup={handleRegistration}
-            handleLogin={handleLogin}
+            openLogin={openLogin}
           />
 
           <LoginModal
             isOpen={activeModal === "Log in"}
             onClose={onClose}
             onLogin={handleSignIn}
-            handleRegister={handleRegister}
+            openRegister={openRegister}
           />
 
           <EditProfileModal

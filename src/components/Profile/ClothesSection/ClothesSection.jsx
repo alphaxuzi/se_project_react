@@ -19,7 +19,6 @@ function ClothesSection({
   ? clothingItems.filter((item) => item.owner === currentUser._id)
   : [];
 
-
   return (
     <div className="c-section__container">
       <div className="c-section__top-part">

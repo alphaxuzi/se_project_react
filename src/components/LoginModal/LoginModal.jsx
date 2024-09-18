@@ -3,7 +3,7 @@ import React from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import './LoginModal.css';
 
-const LoginModal = ({ isOpen, onClose, onLogin, handleRegister }) => {
+const LoginModal = ({ isOpen, onClose, onLogin, openRegister }) => {
 
   const [formData, setFormData] = useState({
     email: "",
@@ -23,9 +23,11 @@ const LoginModal = ({ isOpen, onClose, onLogin, handleRegister }) => {
     onLogin(formData);
   }
 
-  // const handleOrRegister = () {
-  //   handleRegister();
-  // }
+ 
+  const handleRegisterClick = (e) => {
+    e.preventDefault(); 
+    openRegister(); 
+  };
 
   return (
     <ModalWithForm
@@ -59,7 +61,7 @@ const LoginModal = ({ isOpen, onClose, onLogin, handleRegister }) => {
           onChange={handleChange}
         />
       </label>
-      <button onClick={handleRegister} className="modal__login_button">or Register</button>
+      <button onClick={handleRegisterClick} className="modal__login_button">or Register</button>
     </ModalWithForm>
   
   );

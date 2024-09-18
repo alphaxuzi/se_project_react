@@ -3,7 +3,7 @@ import React from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./RegisterModal.css";
 
-const RegisterModal = ({ isOpen, onClose, onSignup, handleLogin }) => {
+const RegisterModal = ({ isOpen, onClose, onSignup, openLogin }) => {
   
     const [formData, setFormData] = useState({
       email: "",
@@ -24,6 +24,13 @@ const RegisterModal = ({ isOpen, onClose, onSignup, handleLogin }) => {
       e.preventDefault();
       onSignup(formData);
     }
+
+
+  const handleLoginClick = (e) => {
+    e.preventDefault(); // Prevent form submission when switching modals
+    openLogin(); // Switch to login modal
+  };
+
   return (
     <>
       <ModalWithForm
@@ -49,7 +56,7 @@ const RegisterModal = ({ isOpen, onClose, onSignup, handleLogin }) => {
           <p className="modal__input_header">Password</p>
           <input
             placeholder="Password"
-            type="passwor"
+            type="password"
             className="modal__input"
             name="password"
             id="password-register"
@@ -82,7 +89,7 @@ const RegisterModal = ({ isOpen, onClose, onSignup, handleLogin }) => {
           />
         </label>
       
-          <button onClick={handleLogin} className="modal__login_button">or Log in</button>
+          <button onClick={handleLoginClick} className="modal__login_button">or Log in</button>
 
       </ModalWithForm>
     </>

@@ -63,6 +63,7 @@
   height: 17px;
   border: none;
   cursor: pointer;
+  background-color: inherit;
 }
 
 .card__like-button_liked{

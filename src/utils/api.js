@@ -13,7 +13,7 @@ function getItems() {
   }).then(checkResponse);
 }
 
-function addCard({ name, imageUrl, weather }) {
+function addCard({ name, imageUrl, weather, owner }) {
   const token = localStorage.getItem("jwt");
 
   return fetch(`${baseUrl}/items`, {
@@ -26,6 +26,7 @@ function addCard({ name, imageUrl, weather }) {
       name,
       imageUrl,
       weather,
+      owner
     }),
   }).then(checkResponse);
 }
