@@ -1,11 +1,6 @@
-const BASE_URL = "http://localhost:3001";
+import { checkResponse } from "./api";
 
-function handleResponse(res) {
-  if (!res.ok) {
-    return Promise.reject(`Error: ${res.status}`);
-  }
-  return res.json();
-}
+const BASE_URL = "http://localhost:3001";
 
 function checkToken(token) {
   return fetch(`${BASE_URL}/users/me`, {
@@ -14,7 +9,7 @@ function checkToken(token) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then(handleResponse);
+  }).then(checkResponse);
 }
 
 function editProfile({name, avatar}) {

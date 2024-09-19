@@ -27,10 +27,11 @@ import {
 } from "../../utils/api";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
-import { signin, signup, checkToken, editProfile } from "../../auth";
+import { signin, signup, checkToken, editProfile } from "../../utils/auth";
 import { useNavigate } from "react-router-dom";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -252,15 +253,17 @@ function App() {
               <Route
                 path="/profile"
                 element={
-                  <Profile
-                    weatherData={weatherData}
-                    handleAddClick={handleAddClick}
-                    handleImageClick={handleImageClick}
-                    clothingItems={clothingItems}
-                    handleEditProfile={handleEditProfile}
-                    onCardLike={handleCardLike}
-                    onLogout={handleLogout}
-                  />
+                  <ProtectedRoute>
+                    <Profile
+                      weatherData={weatherData}
+                      handleAddClick={handleAddClick}
+                      handleImageClick={handleImageClick}
+                      clothingItems={clothingItems}
+                      handleEditProfile={handleEditProfile}
+                      onCardLike={handleCardLike}
+                      onLogout={handleLogout}
+                    />
+                  </ProtectedRoute>
                 }
               ></Route>
             </Routes>

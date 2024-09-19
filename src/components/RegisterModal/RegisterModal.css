@@ -3,5 +3,7 @@
   background-color: white;
   color: rgba(0, 0, 0, 0.5);
   cursor: pointer;
+  position: absolute;
+  left: 140px;
+  top: 310px;
 }
-

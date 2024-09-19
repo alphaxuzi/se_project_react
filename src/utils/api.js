@@ -66,4 +66,4 @@ function removeCardLike(itemId){
 
 
 
-export { getItems, addCard, deleteCard, addCardLike, removeCardLike };
+export { getItems, addCard, deleteCard, addCardLike, removeCardLike, checkResponse };
