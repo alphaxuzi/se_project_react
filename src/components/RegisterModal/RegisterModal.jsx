@@ -85,7 +85,7 @@ const RegisterModal = ({ isOpen, onClose, onSignup, openLogin, buttonText }) => 
           value={formData.avatar}
         />
       </label>
-      <button onClick={handleLoginClick} className="modal__login_button">
+      <button type="button" onClick={handleLoginClick} className="modal__login_button">
         or Log in
       </button>
     </ModalWithForm>

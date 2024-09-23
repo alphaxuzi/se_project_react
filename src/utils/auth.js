@@ -22,7 +22,7 @@ function editProfile({name, avatar}) {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({name, avatar})
-  }).then(handleResponse);
+  }).then(checkResponse);
 }
 
 const signup = ({ name, avatar, email, password }) => {
@@ -32,7 +32,7 @@ const signup = ({ name, avatar, email, password }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name, avatar, email, password }),
-  }).then(handleResponse);
+  }).then(checkResponse);
 };
 
 const signin = ({ email, password }) => {
@@ -42,7 +42,7 @@ const signin = ({ email, password }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  }).then(handleResponse);
+  }).then(checkResponse);
 };
 
 export { signin, signup, checkToken, editProfile };

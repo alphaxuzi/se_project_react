@@ -61,7 +61,7 @@ const LoginModal = ({ isOpen, onClose, onLogin, openRegister }) => {
           onChange={handleChange}
         />
       </label>
-      <button onClick={handleRegisterClick} className="modal__register_button">or Register</button>
+      <button type="button" onClick={handleRegisterClick} className="modal__register_button">or Register</button>
     </ModalWithForm>
   
   );
