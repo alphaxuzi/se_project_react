@@ -37,7 +37,7 @@ const RegisterModal = ({ isOpen, onClose, onSignup, openLogin, buttonText }) => 
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="email" className="modal__label">
+      <label className="modal__label">
         <p className="modal__input_header">Email</p>
         <input
           placeholder="Email"
@@ -49,7 +49,7 @@ const RegisterModal = ({ isOpen, onClose, onSignup, openLogin, buttonText }) => 
           value={formData.email}
         />
       </label>
-      <label htmlFor="password" className="modal__label">
+      <label className="modal__label">
         <p className="modal__input_header">Password</p>
         <input
           placeholder="Password"
@@ -61,7 +61,7 @@ const RegisterModal = ({ isOpen, onClose, onSignup, openLogin, buttonText }) => 
           value={formData.password}
         />
       </label>
-      <label htmlFor="name" className="modal__label">
+      <label className="modal__label">
         <p className="modal__input_header">Name</p>
         <input
           placeholder="Name"
@@ -73,7 +73,7 @@ const RegisterModal = ({ isOpen, onClose, onSignup, openLogin, buttonText }) => 
           value={formData.name}
         />
       </label>
-      <label htmlFor="imageURL" className="modal__label">
+      <label className="modal__label">
         <p className="modal__input_header">Image</p>
         <input
           placeholder="Image URL"

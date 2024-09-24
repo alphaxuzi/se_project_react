@@ -19,14 +19,8 @@
   margin-right: 24px;
 }
 
-.header__buttons {
-  display: flex;
-  margin-left: auto;
-}
-
 .header__button {
   border: none;
-  margin-left: auto;
   cursor: pointer;
   background-color: inherit;
   font-family: "Cabinet Grotesk";

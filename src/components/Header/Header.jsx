@@ -14,7 +14,6 @@ function Header({
   openLogin,
   openRegister,
 }) {
-  
   const currentUser = useContext(CurrentUserContext);
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -29,18 +28,17 @@ function Header({
       <p className="header__date-and-location">
         {currentDate}, {weatherData.city}
       </p>
-
+      <ToggleSwitch />
       {isLoggedIn && currentUser ? (
         <>
-          <div className="header__buttons">
-            <button
-              onClick={handleAddClick}
-              type="button"
-              className="header__button"
-            >
-              + Add Clothes
-            </button>
-          </div>
+          <button
+            onClick={handleAddClick}
+            type="button"
+            className="header__button"
+          >
+            + Add Clothes
+          </button>
+
           <Link className="header__link" to="/profile">
             <div className="header__user-container">
               <p className="header__username">
@@ -57,7 +55,6 @@ function Header({
         </>
       ) : (
         <>
-          <ToggleSwitch />
           <button onClick={openLogin} className="header__login-button">
             Log in
           </button>

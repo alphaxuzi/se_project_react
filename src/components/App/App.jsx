@@ -111,7 +111,7 @@ function App() {
     signin({ email, password })
       .then((res) => {
         setIsLoggedIn(true);
-        navigate("/profile");  
+        navigate("/profile");
         localStorage.setItem("jwt", res.token);
         onClose();
       })

@@ -37,7 +37,7 @@ const LoginModal = ({ isOpen, onClose, onLogin, openRegister }) => {
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="email" className="modal__label">
+      <label className="modal__label">
         <p className="modal__input_header">Email</p>
         <input
           placeholder="Email"
@@ -49,7 +49,7 @@ const LoginModal = ({ isOpen, onClose, onLogin, openRegister }) => {
           onChange={handleChange}
         />
       </label>
-      <label htmlFor="password" className="modal__label">
+      <label className="modal__label">
         <p className="modal__input_header">Password</p>
         <input
           placeholder="Password"
