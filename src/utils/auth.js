@@ -1,6 +1,6 @@
 import { checkResponse } from "./api";
 
-const BASE_URL = "http://localhost:3001";
+import {BASE_URL} from "./constants"
 
 function checkToken(token) {
   return fetch(`${BASE_URL}/users/me`, {

@@ -84,4 +84,9 @@ export const coordinates = {
   longitude: "",
 };
 
+
+export const BASE_URL = process.env.NODE_ENV === "production" 
+? "https://api.alphawtwr.crabdance.com"
+: "http://localhost:3001";
+
 export const APIkey = "eff6eca2faa47ed4977a3eefd6cabf46";
