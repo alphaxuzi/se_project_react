@@ -25,8 +25,8 @@ const RegisterModal = ({ isOpen, onClose, onSignup, openLogin, buttonText }) => 
   };
 
   const handleLoginClick = (e) => {
-    e.preventDefault(); // Prevent form submission when switching modals
-    openLogin(); // Switch to login modal
+    e.preventDefault(); 
+    openLogin(); 
   };
 
   return (

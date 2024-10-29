@@ -96,7 +96,6 @@ function App() {
   };
 
   const handleRegistration = ({ name, avatar, email, password }) => {
-    console.log({ name, avatar, email, password });
     signup({ name, avatar, email, password })
       .then(() => {
         setIsLoggedIn(true);
