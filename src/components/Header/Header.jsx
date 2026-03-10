@@ -32,7 +32,9 @@ function Header({
       {isLoggedIn && currentUser ? (
         <>
           <button
-            onClick={handleAddClick}
+            onClick={() => {
+              handleAddClick();
+            }}
             type="button"
             className="header__button"
           >
@@ -41,9 +43,7 @@ function Header({
 
           <Link className="header__link" to="/profile">
             <div className="header__user-container">
-              <p className="header__username">
-                {currentDate ? currentUser.name : "User"}
-              </p>
+              <p className="header__username">{currentUser?.name || "User"}</p>
 
               <img
                 src={currentUser.avatar}

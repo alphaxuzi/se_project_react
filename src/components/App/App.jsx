@@ -184,7 +184,7 @@ function App() {
         });
     } else {
       setIsLoggedIn(false);
-      setCurrentUser(false);
+      setCurrentUser(null);
     }
   }, [navigate]);
 

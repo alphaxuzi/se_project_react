@@ -26,7 +26,6 @@ function addCard({ name, imageUrl, weather, owner }) {
       name,
       imageUrl,
       weather,
-      owner
     }),
   }).then(checkResponse);
 }
